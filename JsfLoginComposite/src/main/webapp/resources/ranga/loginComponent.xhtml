@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="title" default="Login" displayName="Login" />
+	<composite:attribute name="usernameLabel" default="d-Username"
+		displayName="Username" />
+	<composite:attribute name="usernameValue" />
+	<composite:attribute name="passwordLabel" default="d-Password"
+		displayName="Password" />
+	<composite:attribute name="passwordValue" />
+	<composite:attribute name="loginLabel" default="d-Submit"
+		displayName="Submit" />
+
+	<composite:attribute name="showMessgeDetails" default="false"
+		type="java.lang.Boolean" displayName="Show Details" />
+
+	<composite:attribute name="loginAction" required="true"
+		method-signature="java.lang.String action()" />
+</composite:interface>
+
+<composite:implementation>
+	<h:body>
+		<h2>Login Component</h2>
+		<div align="left" style="width: 300px;"><h:form>
+			<h:messages showDetail="#{cc.attrs.showMessgeDetails}"
+				style="color:red" />
+			<center>
+			<h3><h:outputText value="#{cc.attrs.title}" /></h3>
+			</center>
+			<h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="#{cc.attrs.usernameLabel}" />
+					<h:inputText id="username" value="#{cc.attrs.usernameValue}" />
+					<h:outputLabel value="#{cc.attrs.passwordLabel}" />
+					<h:inputSecret id="password" value="#{cc.attrs.passwordValue}">
+					</h:inputSecret>
+				</h:panelGrid>
+				<h:commandButton action="#{cc.attrs.loginAction}"
+					value="#{cc.attrs.loginLabel}" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+			</h:panelGrid>
+		</h:form></div>
+	</h:body>
+</composite:implementation>
+
+</html>

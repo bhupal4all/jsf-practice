@@ -7,5 +7,6 @@
 
   <modules>
 	<module>JsfPractice</module>
+	<module>JsfLoginComposite</module>
   </modules>
 </project>
