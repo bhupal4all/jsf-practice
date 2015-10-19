@@ -4,14 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:ranga="http://java.sun.com/jsf/composite/ranga">
 <head>
 <title>Login Page</title>
 </head>
 <body>
 <ranga:loginComponent id="username" title="Title Overridden"
-	showMessgeDetails="true" loginAction="#{loginBean.loginAction}" />
-
-<i>Note: d-* are default from custom tags</i>
+	showMessgeDetails="true" loginAction="#{loginBean.loginAction}">
+	<b>This Test is been passed as Children</b>
+</ranga:loginComponent>
 </body>
 </html>
