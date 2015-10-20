@@ -6,3 +6,9 @@ mvn archetype:create -DgroupId=com.ranga.jsf -DartifactId=JsfPractice -Darchetyp
 
 # Eclipse Project creation
 mvn eclipse:eclipse -Dwtpversion=2.0
+
+### JSF TAGS ###
+http://docs.oracle.com/javaee/6/javaserverfaces/2.0/docs/pdldocs/facelets/
+
+### JSTL ####
+http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/index.html
