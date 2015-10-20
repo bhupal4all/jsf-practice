@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
- <namespace>http://jsf.ranga.com/customtags</namespace>
+ <description>This Tag Library for Black And White</description>
+ <namespace>http://jsf.ranga.com/customtags.bw</namespace>
  <tag>
   <description>Integer to String Conversion</description>
   <tag-name>int2string</tag-name>
   <component>
    <component-type>com.ranga.jsf.component.Int2StringComponent</component-type>
-   <renderer-type>com.ranga.jsf.renderer.Int2StringRenderer</renderer-type>
+   <renderer-type>com.ranga.jsf.renderer.Int2StringBWRenderer</renderer-type>
    <handler-class/>
   </component>
   <attribute>
