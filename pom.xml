@@ -8,5 +8,6 @@
   <modules>
 	<module>JsfPractice</module>
 	<module>JsfLoginComposite</module>
+	<module>JsfFaceletCustomTagQuote</module>
   </modules>
 </project>
