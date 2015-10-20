@@ -10,5 +10,6 @@
 	<module>JsfLoginComposite</module>
 	<module>JsfFaceletCustomTagQuote</module>
 	<module>JsfCustomUIComponentBase</module>
+	<module>JsfCustomTagHandler</module>
   </modules>
 </project>

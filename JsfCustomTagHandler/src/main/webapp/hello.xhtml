@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ranga="http://jsf.ranga.com/customtags">
+<head>
+<title>Tag Handler</title>
+</head>
+<body>
+<h1>Message Tag using TagHandler</h1>
+<h:panelGrid frame="box" columns="2">
+	<h:outputLabel value="Default" />
+	<ranga:message />
+
+	<h:outputLabel value="Message" />
+	<ranga:message value="This is Testing Message" />
+
+	<h:outputLabel value="Bold Message" />
+	<ranga:message bold="true" value="This is Bold Message" />
+
+	<h:outputLabel value="Italic Message" />
+	<ranga:message italic="true" value="This is Italic Message" />
+
+	<h:outputLabel value="Underline Message" />
+	<ranga:message underline="true" value="This is Italic Message" />
+</h:panelGrid>
+</body>
+</html>
