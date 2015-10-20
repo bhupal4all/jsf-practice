@@ -9,5 +9,6 @@
 	<module>JsfPractice</module>
 	<module>JsfLoginComposite</module>
 	<module>JsfFaceletCustomTagQuote</module>
+	<module>JsfCustomUIComponentBase</module>
   </modules>
 </project>

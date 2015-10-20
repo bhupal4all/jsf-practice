@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<facelet-taglib version="2.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
+	<namespace>http://jsf.ranga.com/customtags</namespace>
+	<tag>
+		<description>Integer to String Conversion</description>
+		<tag-name>int2string</tag-name>
+		<component>
+			<component-type>com.ranga.jsf.component.Int2StringComponent
+			</component-type>
+			<handler-class />
+		</component>
+		<attribute>
+			<description>Integer Value</description>
+			<name>value</name>
+			<required>true</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+	</tag>
+</facelet-taglib>
