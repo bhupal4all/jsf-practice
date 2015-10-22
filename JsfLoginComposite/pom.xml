@@ -5,7 +5,7 @@
   <artifactId>jsflogincomposite</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>JsfPractice Maven Webapp</name>
+  <name>JSF Login Composite Web App</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>

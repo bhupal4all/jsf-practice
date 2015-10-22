@@ -11,6 +11,9 @@ mvn archetype:create -DgroupId=com.ranga.jsf -DartifactId=JsfPractice -Darchetyp
 mvn eclipse:eclipse -Dwtpversion=2.0
 ```
 
+### JSF Documentation ###
+https://javaserverfaces.java.net/docs/2.2/javadocs/
+
 ### JSF TAGS ###
 http://docs.oracle.com/javaee/6/javaserverfaces/2.0/docs/pdldocs/facelets/
 
