@@ -11,5 +11,6 @@
 	<module>JsfFaceletCustomTagQuote</module>
 	<module>JsfCustomUIComponentBase</module>
 	<module>JsfCustomTagHandler</module>
+	<module>JsfCustomUIInput</module>
   </modules>
 </project>
