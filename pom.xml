@@ -13,5 +13,6 @@
 	<module>JsfCustomTagHandler</module>
 	<module>JsfCustomUIInput</module>
 	<module>JSFReadingProperties</module>
+	<module>JSFRedirectFlash</module>
   </modules>
 </project>
