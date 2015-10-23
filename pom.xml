@@ -12,5 +12,6 @@
 	<module>JsfCustomUIComponentBase</module>
 	<module>JsfCustomTagHandler</module>
 	<module>JsfCustomUIInput</module>
+	<module>JSFReadingProperties</module>
   </modules>
 </project>
