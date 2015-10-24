@@ -14,5 +14,6 @@
 	<module>JsfCustomUIInput</module>
 	<module>JSFReadingProperties</module>
 	<module>JSFRedirectFlash</module>
+	<module>JSFOutcomeAttr</module>
   </modules>
 </project>

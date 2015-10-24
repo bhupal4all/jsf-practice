@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Third Page</title>
+	<style>
+.link {
+	font-variant: small-caps;
+	font-size: large;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>This is Third Page, check the URL</h1>
+
+	<f:metadata>
+		<f:viewParam name="currentpage" value="1" />
+	</f:metadata>
+
+	<ui:repeat var="idx" value="${helloBean.pageNumbers}">
+		<h:link styleClass="link" outcome="page${idx}.xhtml" value="Page ${idx}"
+			disabled="${currentpage eq idx}">
+			<f:param name="currentpage" value="${idx}" />
+		</h:link>&nbsp;
+	</ui:repeat>
+
+	<ui:debug hotkey="E" />
+</h:body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<title>JSF First Page</title>
+	<style>
+.link {
+	font-variant: small-caps;
+	font-size: large;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>This is Page One, check the URL</h1>
+
+	<f:metadata>
+		<f:viewParam name="currentpage" value="1" />
+	</f:metadata>
+
+	<p>Outcome needs either .xhtml page or bean property and this is
+	applicabel for h:link and h:button</p>
+
+	<table class="code">
+		<tr>
+			<td style="background-color: green;"></td>
+			<td><code class="language-markup">&lt;h:link value="Java:
+			Page2" outcome="page2.xhtml"&gt; <br />
+			&lt;h:link&gt;</code></td>
+		</tr>
+	</table>
+	<br />
+
+	<ui:repeat var="idx" value="#{helloBean.pageNumbers}">
+		<h:link styleClass="link" outcome="page#{idx}" value="Page #{idx}"
+			disabled="${currentpage eq idx}">
+			<f:param name="currentpage" value="${idx}" />
+		</h:link>&nbsp;
+	</ui:repeat>
+
+	<br />
+	<ui:repeat var="idx" value="#{helloBean.pageNumbers}">
+		<h:button styleClass="link" outcome="page#{idx}" value="Page #{idx}"
+			disabled="${currentpage eq idx}">
+			<f:param name="currentpage" value="${idx}" />
+		</h:button> &nbsp;
+	</ui:repeat>
+
+	<br />
+	<h3>Outcome through JSF Bean</h3>
+
+	<table class="code">
+		<tr>
+			<td style="background-color: green;"></td>
+			<td><code class="language-markup"> &lt;h:link
+			value="Java: Page2" outcome="hash{helloBean.outcomeProperty}"&gt;
+			&lt;h:link&gt;</code></td>
+		</tr>
+	</table>
+	<br />
+	<h:link value="Java: Page2" outcome="#{helloBean.outcomeProperty}">
+		<f:param name="currentpage" value="#{idx}" />
+	</h:link>
+
+	<ui:debug hotkey="E" />
+</h:body>
+</html>
