@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JSF Practice!</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>JSF ManagedBean and property getter</h1>
+	<h:panelGrid frame="box">
+		<h3>ManagedBean and Property getter</h3>
+		<code><pre>
+<u>Java Code</u>
+@ManagedBean(name = "helloBean", eager = true)
+public class HelloBean {
+   public String getMessage() {
+      return "Hello World!";
+   }
+}
+
+<u>HTML Code</u>
+Message: hash{helloBean.message}
+</pre></code>
+	</h:panelGrid>
+
+   Message: #{helloBean.message}
+</h:body>
+</html>
