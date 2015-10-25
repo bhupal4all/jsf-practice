@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Standard Validators</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h1>Standard Validators</h1>
+
+	<h:messages errorStyle="color: Red" showSummary="true" />
+
+	<h:panelGrid frame="box">
+		<h:outputText value="Validator Common Tags Code" />
+		<code><pre>
+&lt;f:validateDoubleRange minimum=".01" maximum="99999.99" /&gt;
+&lt;f:validateLength minimum="16" maximum="16" /&gt;
+&lt;f:validateRegex pattern="[a-z][a-z0-9]*[@][a-z]{4,4}[.][c][o][m]"  /&gt;
+&lt;f:validateRequired /&gt;
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Amount *" />
+			<h:inputText value="#{backingBean.amount}" required="true"
+				label="Amount">
+				<f:convertNumber pattern="#00000.00" minFractionDigits="2" />
+				<f:validateDoubleRange minimum=".01" maximum="99999.99" />
+			</h:inputText>
+
+			<h:outputLabel value="Credit Card Number *" />
+			<h:inputText value="#{backingBean.creditCardNumber}" size="16"
+				required="true" maxlength="16" label="Credit Card Number">
+				<f:convertNumber integerOnly="true" type="number" />
+				<f:validateLength minimum="16" maximum="16" />
+			</h:inputText>
+
+			<h:outputLabel value="Expiry Date (MM/YYYY) *" />
+			<h:inputText value="#{backingBean.expiryDate}" label="Expiry Date"
+				required="true" maxlength="7" size="7">
+				<f:convertDateTime pattern="mm/yyyy" type="date" />
+			</h:inputText>
+
+			<h:outputLabel value="Email Id:" />
+			<h:inputText value="#{backingBean.email}" label="email"
+				validatorMessage="email is pattern (a*@aaaa.com) is NOT matched">
+				<f:validateRegex pattern="[a-z][a-z0-9]*[@][a-z]{4,4}[.][c][o][m]" />
+				<f:validateRequired />
+			</h:inputText>
+		</h:panelGrid>
+
+		<h:commandButton value="Submit" action="#{backingBean.submitAction}" />
+	</h:form>
+</h:body>
+</html>

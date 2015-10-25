@@ -17,5 +17,6 @@
 	<module>JSFOutcomeAttr</module>
 	<module>JSFFaceletComposition</module>
 	<module>JSFStandardConverters</module>
+	<module>JSFStandardValidators</module>
   </modules>
 </project>
