@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Custom Validator</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h1>Custom Validator</h1>
+
+	<h:messages showSummary="true" showDetail="true" />
+
+	<h:panelGrid frame="box">
+		<h:outputText value="Converter Tags Code" />
+		<code><pre>
+<u>HTML Code:</u>
+&lt;f:validator validatorId="com.ranga.jsf.validator.CreditCardValidator" /&gt;
+
+<u>Java Code:</u>
+@FacesValidator(value="com.ranga.jsf.validator.CreditCardValidator")
+public class CreditCardValidator implements javax.faces.validator.Validator{
+
+	@Override
+	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+		...	
+	}
+}
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Credit Card Number" />
+			<h:inputText value="#{backingBean.creditCardNumber}" label="Credit Card Number">
+				<f:converter converterId="com.ranga.jsf.convertor.CreditCardConvertor"/>
+				<f:validator validatorId="com.ranga.jsf.validator.CreditCardValidator" />
+			</h:inputText>
+		</h:panelGrid>
+
+		<h:commandButton value="Submit" action="#{backingBean.submitAction}" />
+	</h:form>
+</h:body>
+</html>

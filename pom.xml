@@ -19,5 +19,6 @@
 	<module>JSFStandardConverters</module>
 	<module>JSFStandardValidators</module>
 	<module>JSFCustomConvertor</module>
+	<module>JSFCustomValidator</module>
   </modules>
 </project>
