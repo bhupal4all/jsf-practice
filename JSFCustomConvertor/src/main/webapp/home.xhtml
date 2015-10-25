@@ -28,7 +28,10 @@ code>pre {
 @FacesConverter(value = "com.ranga.jsf.convertor.CreditCardConvertor")
 public class CreditCardConvertor implements javax.faces.convert.Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-			...
+		String seperator = (String) component.getAttributes().get("seperator");
+		String errorMessage = (String) component.getAttributes().get("errorMessage");
+
+		...
 	}
 	
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
@@ -41,8 +44,13 @@ public class CreditCardConvertor implements javax.faces.convert.Converter {
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Credit Card Number" />
-			<h:inputText value="#{backingBean.creditCardNumber}" label="Credit Card Number">
-				<f:converter converterId="com.ranga.jsf.convertor.CreditCardConvertor"/>
+			<h:inputText value="#{backingBean.creditCardNumber}"
+				label="Credit Card Number">
+				<f:converter
+					converterId="com.ranga.jsf.convertor.CreditCardConvertor" />
+				<f:attribute name="seperator" value="-" />
+				<f:attribute name="errorMessage"
+					value="Credit Card Number Conversion Failed." />
 			</h:inputText>
 		</h:panelGrid>
 
