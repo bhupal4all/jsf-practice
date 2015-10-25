@@ -15,5 +15,6 @@
 	<module>JSFReadingProperties</module>
 	<module>JSFRedirectFlash</module>
 	<module>JSFOutcomeAttr</module>
+	<module>JSFFaceletComposition</module>
   </modules>
 </project>
