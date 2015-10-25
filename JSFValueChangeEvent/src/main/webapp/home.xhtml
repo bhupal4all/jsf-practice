@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Value Change Event</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>Value Change Event Practice</h1>
+
+	<h:panelGrid frame="box">
+		<h3>Value Change Event Listener Method</h3>
+		<code><pre>
+<u>Java Code</u>
+@ManagedBean(name = "helloBean", eager = true)
+public class HelloBean {
+	public void menuValueChangeEvent(ValueChangeEvent event) {
+		System.out.println("menuValueChangeEvent\n\tOld Value="
+				+ event.getOldValue() + "\n\tNew Value=" + event.getNewValue());
+	}
+}
+
+<u>HTML Code</u>
+&lt;h:selectOneMenu value="hash{helloBean.debugLevel}"
+	valueChangeListener="hash{helloBean.menuValueChangeEvent}"
+	onchange="submit()"&gt;
+	&lt;f:selectItem itemValue="All" /&gt;
+&lt;/h:selectOneMenu&gt;
+
+<i>Note: form needs to be submitted when value got changed</i>
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Class Name" />
+			<h:inputText value="#{helloBean.className}" onchange="submit()"
+				valueChangeListener="#{helloBean.textValueChangeEvent}" />
+
+			<h:outputText value="Debug Level" />
+			<h:selectOneMenu value="#{helloBean.debugLevel}"
+				valueChangeListener="#{helloBean.menuValueChangeEvent}"
+				onchange="submit()">
+				<f:selectItem itemValue="All" />
+				<f:selectItem itemValue="Trace" />
+				<f:selectItem itemValue="Info" />
+				<f:selectItem itemValue="Debug" />
+				<f:selectItem itemValue="Error" />
+				<f:selectItem itemValue="Fatal" />
+			</h:selectOneMenu>
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
