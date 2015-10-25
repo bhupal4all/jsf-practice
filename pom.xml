@@ -22,5 +22,6 @@
 	<module>JSFCustomValidator</module>
 	<module>JSFCustomValConvTag</module>
 	<module>JSFValueChangeEvent</module>
+	<module>JSFActionEvent</module>
   </modules>
 </project>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Action Event</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>JSF Command Button Action Event</h1>
+	<h:panelGrid frame="box">
+		<h3>ManagedBean and Property getter</h3>
+		<code><pre>
+<u>Java Code</u>
+@ManagedBean(name = "helloBean", eager = true)
+public class HelloBean {
+	public void defaultActionListener(ActionEvent event) {
+		FacesContext fcontext = FacesContext.getCurrentInstance();
+		String clientId = event.getComponent().getClientId(fcontext);
+		...
+	}
+}
+
+<u>HTML Code</u>
+&lt;h:form&gt;
+	&lt;h:commandLink action="hash{helloBean.defaultAction}" value="Link" actionListener="hash{helloBean.defaultActionListener}" /&gt;
+	&lt;h:commandButton value="demo" action="hash{helloBean.defaultAction}" actionListener="hash{helloBean.defaultActionListener}" /&gt;
+&lt;/h:form&gt;
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:commandLink action="#{helloBean.defaultAction}" value="Link"
+			actionListener="#{helloBean.defaultActionListener}" />
+		<h:commandButton value="demo" action="#{helloBean.defaultAction}"
+			actionListener="#{helloBean.defaultActionListener}" />
+	</h:form>
+</h:body>
+</html>
