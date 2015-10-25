@@ -16,5 +16,6 @@
 	<module>JSFRedirectFlash</module>
 	<module>JSFOutcomeAttr</module>
 	<module>JSFFaceletComposition</module>
+	<module>JSFStandardConverters</module>
   </modules>
 </project>

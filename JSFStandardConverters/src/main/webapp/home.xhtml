@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Standard Converters</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h1>Standard Converters</h1>
+
+	<h:messages tooltip="true" showSummary="true" />
+
+	<h:panelGrid frame="box">
+		<h:outputText value="Converter Tags Code" />
+		<code><pre>
+&lt;f:convertNumber pattern="#00000.00" minFractionDigits="2" /&gt;
+&lt;f:convertDateTime pattern="mm/yyyy" type="date" /&gt;
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Amount" />
+			<h:inputText value="#{backingBean.amount}" maxlength="8" size="8"
+				label="Amount">
+				<f:convertNumber pattern="#00000.00" minFractionDigits="2" />
+			</h:inputText>
+
+			<h:outputLabel value="Credit Card Number" />
+			<h:inputText value="#{backingBean.creditCardNumber}" size="16"
+				maxlength="16" label="Credit Card Number">
+				<f:convertNumber integerOnly="true" type="number" />
+			</h:inputText>
+
+			<h:outputLabel value="Expiry Date (MM/YYYY)" />
+			<h:inputText value="#{backingBean.expiryDate}" label="Expiry Date"
+				maxlength="7" size="7">
+				<f:convertDateTime pattern="mm/yyyy" type="date" />
+			</h:inputText>
+		</h:panelGrid>
+
+		<h:commandButton value="Submit" action="#{backingBean.submitAction}" />
+	</h:form>
+</h:body>
+</html>
