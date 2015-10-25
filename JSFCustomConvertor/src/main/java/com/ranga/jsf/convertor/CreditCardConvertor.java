@@ -12,6 +12,8 @@ public class CreditCardConvertor implements javax.faces.convert.Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
+		System.out.println("getAsObject: " + value);
+
 		String creditCardNumber = (String) value;
 		creditCardNumber = creditCardNumber.trim();
 		creditCardNumber = creditCardNumber.replaceAll(" ", "");
@@ -19,17 +21,8 @@ public class CreditCardConvertor implements javax.faces.convert.Converter {
 		if (creditCardNumber.length() == 0 || creditCardNumber.length() > 16) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Custom Validation Failed.",
-					"Credit Card Length is NOT matched for '"+creditCardNumber+"'");
-
-			throw new ConverterException(message);
-		}
-
-		try {
-			Integer cc = Integer.parseInt(creditCardNumber);
-		} catch (NumberFormatException e) {
-			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Custom Validation Failed.",
-					"NOT a valid Credit Card Number. " + e.getMessage());
+					"Credit Card Length is NOT matched for '"
+							+ creditCardNumber + "'");
 
 			throw new ConverterException(message);
 		}
@@ -40,6 +33,7 @@ public class CreditCardConvertor implements javax.faces.convert.Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {
+		System.out.println("getAsObject: " + value);
 		String creditCardNumber = (String) value;
 
 		creditCardNumber = creditCardNumber.trim();

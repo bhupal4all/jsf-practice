@@ -14,6 +14,8 @@
 	<h:panelGrid columns="2">
 		<h:outputLabel value="Credit Card Number" />
 		<h:outputText value="#{backingBean.creditCardNumber}">
+			<f:converter
+				converterId="com.ranga.jsf.convertor.CreditCardConvertor" />
 		</h:outputText>
 
 	</h:panelGrid>
