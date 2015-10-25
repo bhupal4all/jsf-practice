@@ -20,5 +20,6 @@
 	<module>JSFStandardValidators</module>
 	<module>JSFCustomConvertor</module>
 	<module>JSFCustomValidator</module>
+	<module>JSFCustomValConvTag</module>
   </modules>
 </project>
