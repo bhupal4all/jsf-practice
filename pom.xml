@@ -18,5 +18,6 @@
 	<module>JSFFaceletComposition</module>
 	<module>JSFStandardConverters</module>
 	<module>JSFStandardValidators</module>
+	<module>JSFCustomConvertor</module>
   </modules>
 </project>

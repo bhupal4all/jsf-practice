@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Custom Converters</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h1>Standard Converters</h1>
+
+	<h:messages showSummary="true" showDetail="true" />
+
+	<h:panelGrid frame="box">
+		<h:outputText value="Converter Tags Code" />
+		<code><pre>
+<u>HTML Code:</u>
+&lt;f:converter converterId="com.ranga.jsf.convertor.CreditCardConvertor"/&gt;
+
+<u>Java Code:</u>
+@FacesConverter(value = "com.ranga.jsf.convertor.CreditCardConvertor")
+public class CreditCardConvertor implements javax.faces.convert.Converter {
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+			...
+	}
+	
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		...
+	}
+}
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Credit Card Number" />
+			<h:inputText value="#{backingBean.creditCardNumber}" label="Credit Card Number">
+				<f:converter converterId="com.ranga.jsf.convertor.CreditCardConvertor"/>
+			</h:inputText>
+		</h:panelGrid>
+
+		<h:commandButton value="Submit" action="#{backingBean.submitAction}" />
+	</h:form>
+</h:body>
+</html>
