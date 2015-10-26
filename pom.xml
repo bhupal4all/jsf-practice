@@ -24,5 +24,6 @@
 	<module>JSFValueChangeEvent</module>
 	<module>JSFActionEvent</module>
 	<module>JsfPhaseEvent</module>
+	<module>JsfSystemEvent</module>
   </modules>
 </project>

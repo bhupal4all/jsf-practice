@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JSF System Event</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>JSF System Event Listener</h1>
+	<h:panelGrid frame="box">
+		<h3>Pre Render View System Event Listener</h3>
+		<code><pre>
+<u>Java Code</u>
+@ManagedBean(name = "helloBean", eager = true)
+public class HelloBean {
+	public void preRenderViewListener(ComponentSystemEvent event){
+		System.out.println("Before Render "+event.getSource().getClass());
+	}
+}
+
+<u>HTML Code</u>
+&lt;f:event listener="hash{helloBean.preRenderViewListener}" type="preRenderView" //&gt;
+</pre></code>
+	</h:panelGrid>
+
+	<f:event listener="#{helloBean.preRenderViewListener}"
+		type="preRenderView" />
+	<h:form>
+		<h:inputText value="#{helloBean.message}">
+			<f:validateRequired />
+			<f:validateLength minimum="3" />
+		</h:inputText>
+	</h:form>
+
+</h:body>
+</html>
