@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JSF Practice!</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>JSF ManagedBean and property getter</h1>
+	<h:panelGrid frame="box">
+		<h3>ManagedBean and Property getter</h3>
+		<code><pre>
+<u>Java Code</u>
+public class ValidationPhaseListener implements javax.faces.event.PhaseListener {
+	public void afterPhase(PhaseEvent event) {
+		System.out.println("ValidationPhaseListener.afterPhase "
+				+ event.getPhaseId());
+	}
+
+	public void beforePhase(PhaseEvent event) {
+		System.out.println("ValidationPhaseListener.beforePhase"
+				+ event.getPhaseId());
+	}
+
+	public PhaseId getPhaseId() {
+		return PhaseId.PROCESS_VALIDATIONS;
+	}
+}
+
+<u>HTML Code</u>
+&lt;f:phaseListener type="com.ranga.jsf.listener.ValidationPhaseListener" /&gt;
+
+<u>Faces Config</u>
+&lt;lifecycle&gt;
+	&lt;phase-listener&gt;com.ranga.jsf.listener.PhaseTracker&lt;/phase-listener&gt;
+&lt;/lifecycle&gt;
+</pre></code>
+	</h:panelGrid>
+
+	<h:form>
+		<f:phaseListener type="com.ranga.jsf.listener.ValidationPhaseListener" />
+		<h:inputText value="#{helloBean.message}">
+			<f:validateRequired />
+			<f:validateLength minimum="3" />
+		</h:inputText>
+	</h:form>
+
+</h:body>
+</html>

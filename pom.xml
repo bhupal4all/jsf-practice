@@ -23,5 +23,6 @@
 	<module>JSFCustomValConvTag</module>
 	<module>JSFValueChangeEvent</module>
 	<module>JSFActionEvent</module>
+	<module>JsfPhaseEvent</module>
   </modules>
 </project>
