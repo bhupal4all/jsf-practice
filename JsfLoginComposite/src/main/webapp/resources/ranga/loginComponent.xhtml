@@ -7,7 +7,10 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
+	<!-- Title -->
 	<composite:attribute name="title" default="Login" displayName="Login" />
+
+	<!-- Login Component -->
 	<composite:attribute name="usernameLabel" default="d-Username"
 		displayName="Username" />
 	<composite:attribute name="usernameValue" />
@@ -17,38 +20,47 @@
 	<composite:attribute name="loginLabel" default="d-Submit"
 		displayName="Submit" />
 
+	<!-- Error Message -->
 	<composite:attribute name="showMessgeDetails" default="false"
 		type="java.lang.Boolean" displayName="Show Details" />
 
+	<!-- Validations -->
+	<composite:editableValueHolder name="username"
+		targets="loginForm:username" />
+	<composite:editableValueHolder name="password"
+		targets="loginForm:password" />
+	<composite:editableValueHolder name="inputs"
+		targets="loginForm:username loginForm:password" />
+
+	<!-- Actions -->
 	<composite:attribute name="loginAction" required="true"
 		method-signature="java.lang.String action()" />
 </composite:interface>
 
 <composite:implementation>
-	<h:body>
-		<h2>Login Component</h2>
-		<div align="left" style="width: 300px;"><h:form>
-			<h:messages showDetail="#{cc.attrs.showMessgeDetails}"
-				style="color:red" />
-			<center>
-			<h3><h:outputText value="#{cc.attrs.title}" /></h3>
-			</center>
-			<h:panelGrid>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="#{cc.attrs.usernameLabel}" />
-					<h:inputText id="username" value="#{cc.attrs.usernameValue}" />
-					<h:outputLabel value="#{cc.attrs.passwordLabel}" />
-					<h:inputSecret id="password" value="#{cc.attrs.passwordValue}">
-					</h:inputSecret>
-				</h:panelGrid>
-				<h:commandButton action="#{cc.attrs.loginAction}"
-					value="#{cc.attrs.loginLabel}" />
+	<h2>Login Component</h2>
+	<h:messages showDetail="#{cc.attrs.showMessgeDetails}"
+		style="color:red" />
+	<div align="left" style="width: 300px;"><h:form id="loginForm">
+		<center>
+		<h3><h:outputText value="#{cc.attrs.title}" /></h3>
+		</center>
+		<h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{cc.attrs.usernameLabel}" />
+				<h:inputText id="username" value="#{cc.attrs.usernameValue}"
+					label="#{cc.attrs.usernameLabel}" />
+				<h:outputLabel value="#{cc.attrs.passwordLabel}" />
+				<h:inputSecret id="password" value="#{cc.attrs.passwordValue}"
+					label="#{cc.attrs.passwordLabel}">
+				</h:inputSecret>
 			</h:panelGrid>
-			<i><u>Note:</u> d-* are default from custom tags.</i>
-			<br />
-			<composite:insertChildren />
-		</h:form></div>
-	</h:body>
+			<h:commandButton action="#{cc.attrs.loginAction}"
+				value="#{cc.attrs.loginLabel}" />
+		</h:panelGrid>
+		<i><u>Note:</u> d-* are default from custom tags.</i>
+	</h:form></div>
+	<composite:insertChildren />
 </composite:implementation>
 
 </html>

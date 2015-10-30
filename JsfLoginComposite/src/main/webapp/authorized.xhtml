@@ -11,15 +11,7 @@
 </head>
 <h:body>
 
-	<ranga:loginComponent title="Title Overridden"
-		showMessgeDetails="false" loginAction="#{loginBean.loginAction}"
-		usernameLabel="Username" usernameValue="#{loginBean.username}"
-		passwordLabel="Password" passwordValue="#{loginBean.password}">
-		<f:validateRequired for="inputs" />
-		<f:validateLength minimum="3" for="username" />
-		<f:validateLength minimum="3" for="password" />
-		<b>This Test is been passed as Children</b>
-	</ranga:loginComponent>
+	<h1>Welcome #{loginBean.username}</h1>
 
 </h:body>
 </html>

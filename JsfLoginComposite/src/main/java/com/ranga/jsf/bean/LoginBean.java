@@ -6,8 +6,8 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "loginBean", eager = true)
 public class LoginBean {
-	String username;
-	String password;
+	String username = "";
+	String password = "";
 
 	public String getUsername() {
 		return username;
@@ -31,7 +31,8 @@ public class LoginBean {
 
 	public String loginAction() {
 		System.out.println("Login Action Called");
-		if (username != null && username.equals(password))
+		if (username != null && !username.isEmpty() && !password.isEmpty()
+				&& username.equals(password))
 			return "authorized";
 		else {
 			// Adding Error Message to Context
