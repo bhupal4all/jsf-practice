@@ -29,8 +29,8 @@ public class HelloBean {
 }
 
 <u>HTML Code</u>
-&lt;h:selectOneMenu value="hash{helloBean.debugLevel}"
-	valueChangeListener="hash{helloBean.menuValueChangeEvent}"
+&lt;h:selectOneMenu value="\#{helloBean.debugLevel}"
+	valueChangeListener="\#{helloBean.menuValueChangeEvent}"
 	onchange="submit()"&gt;
 	&lt;f:selectItem itemValue="All" /&gt;
 &lt;/h:selectOneMenu&gt;
