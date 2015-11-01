@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+@ManagedBean(eager=true, name="dates")
 public class Dates implements Serializable {
 	private static final long serialVersionUID = 3681731603977913350L;
 	private int[] days;

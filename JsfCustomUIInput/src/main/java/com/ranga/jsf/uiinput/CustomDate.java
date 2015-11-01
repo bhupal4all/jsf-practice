@@ -10,7 +10,7 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.ConverterException;
 
-@FacesComponent(value = "CustomDate")
+@FacesComponent("CustomDate")
 public class CustomDate extends UIInput implements NamingContainer {
 	public static final String CUSTOM_DATE_FAMILY = "javax.faces.NamingContainer";
 
@@ -50,10 +50,12 @@ public class CustomDate extends UIInput implements NamingContainer {
 		UIInput dayComponent = (UIInput) findComponent("day");
 		UIInput monthComponent = (UIInput) findComponent("month");
 		UIInput yearComponent = (UIInput) findComponent("year");
-		dayComponent.setValue(date.getDate());
-		monthComponent.setValue(date.getMonth() + 1);
-		yearComponent.setValue(date.getYear() + 1900);
-
+		
+		if (date != null) {
+			dayComponent.setValue(date.getDate());
+			monthComponent.setValue(date.getMonth() + 1);
+			yearComponent.setValue(date.getYear() + 1900);
+		}
 		super.encodeBegin(context);
 	}
 
