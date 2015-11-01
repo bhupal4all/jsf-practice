@@ -29,8 +29,8 @@ public class ApplicationBean {
 			for (String submenustring : menuArray) {
 				String[] submenuarray = submenustring.split(",");
 				if (submenuarray.length == 3) {
-					submenu.add(new SubMenuData(submenuarray[0],
-							submenuarray[1], submenuarray[2]));
+					submenu.add(new SubMenuData(submenuarray[0].trim(),
+							submenuarray[1].trim(), submenuarray[2].trim()));
 				}
 			}
 		} catch (Exception e) {
