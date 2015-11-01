@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ranga="http://jsf.ranga.com/customtags">
+
+<h:body>
+	<ui:composition>
+		<center><h:panelGrid columns="2" width="80%">
+			<f:facet name="header">
+				<h:panelGroup layout="block" style="background-color: Green"></h:panelGroup>
+				<h:panelGroup layout="block"
+					style="background-color:
+					black; color: white; height: 100px; vertical-align:middle; font-family: sans-serif;">
+					<h1 style="font-variant: small-caps;">#{empty pageTitle ?
+					gmsg.defaultTitle : pageTitle}</h1>
+					<h2 align="right" style="color: gray">#{empty subTitle ?
+					gmsg.defaultSubTitle : subTitle}</h2>
+				</h:panelGroup>
+			</f:facet>
+			<h:form>
+				<ui:repeat var="menuitem" value="#{appBean.submenu}"
+					varStatus="menuitemstatus">
+					<h:panelGroup layout="block" style="width:100%"
+						rendered="#{menuitemstatus.index % 4 == 0}">
+						<h:panelGrid columns="4" width="100%" cellpadding="5px;" border="1">
+							<h:panelGrid frame="box" style="width:100%"
+								rendered="#{not empty appBean.submenu[menuitemstatus.index]}">
+								<a style="font: menu"
+									href="#{appBean.submenu[menuitemstatus.index].menuUrl}"
+									target="_blank">
+								#{appBean.submenu[menuitemstatus.index].displayName} </a>
+								<h:outputText style="font:small-caption"
+									value="#{appBean.submenu[menuitemstatus.index].description}" />
+							</h:panelGrid>
+
+							<h:panelGrid frame="box" style="width:100%"
+								rendered="#{not empty appBean.submenu[menuitemstatus.index+1]}">
+								<a style="font: menu"
+									href="#{appBean.submenu[menuitemstatus.index+1].menuUrl}"
+									target="_blank">
+								#{appBean.submenu[menuitemstatus.index+1].displayName} </a>
+								<h:outputText style="font:small-caption"
+									value="#{appBean.submenu[menuitemstatus.index+1].description}" />
+							</h:panelGrid>
+							
+							<h:panelGrid frame="box" style="width:100%"
+								rendered="#{not empty appBean.submenu[menuitemstatus.index+2]}">
+								<a style="font: menu"
+									href="#{appBean.submenu[menuitemstatus.index+2].menuUrl}"
+									target="_blank">
+								#{appBean.submenu[menuitemstatus.index+2].displayName} </a>
+								<h:outputText style="font:small-caption"
+									value="#{appBean.submenu[menuitemstatus.index+2].description}" />
+							</h:panelGrid>
+
+							<h:panelGrid frame="box" style="width:100%"
+								rendered="#{not empty appBean.submenu[menuitemstatus.index+3]}">
+								<a style="font: menu"
+									href="#{appBean.submenu[menuitemstatus.index+3].menuUrl}"
+									target="_blank">
+								#{appBean.submenu[menuitemstatus.index+3].displayName} </a>
+								<h:outputText style="font:small-caption"
+									value="#{appBean.submenu[menuitemstatus.index+3].description}" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGroup>
+				</ui:repeat>
+			</h:form>
+			<f:facet name="footer">
+				<center>
+				<hr />
+				<h:outputText style="font:status-bar" value="#{gmsg.copyright}" /></center>
+			</f:facet>
+		</h:panelGrid></center>
+	</ui:composition>
+</h:body>
+</html>

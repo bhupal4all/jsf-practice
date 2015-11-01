@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
 
   <modules>
+	<module>JsfShowCase</module>
 	<module>JsfPractice</module>
 	<module>JsfLoginComposite</module>
 	<module>JsfFaceletCustomTagQuote</module>
