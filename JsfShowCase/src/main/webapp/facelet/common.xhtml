@@ -25,11 +25,11 @@
 					varStatus="menuitemstatus">
 					<h:panelGroup layout="block" style="width:100%"
 						rendered="#{menuitemstatus.index % 4 == 0}">
-						<h:panelGrid columns="4" width="100%" cellpadding="5px;" border="1">
+						<h:panelGrid columns="4" width="100%" cellpadding="5px;" >
 							<h:panelGrid frame="box" style="width:100%"
 								rendered="#{not empty appBean.submenu[menuitemstatus.index]}">
 								<a style="font: menu"
-									href="#{appBean.submenu[menuitemstatus.index].menuUrl}"
+									href="http://#{header.host}/#{appBean.submenu[menuitemstatus.index].menuUrl}"
 									target="_blank">
 								#{appBean.submenu[menuitemstatus.index].displayName} </a>
 								<h:outputText style="font:small-caption"
@@ -39,7 +39,7 @@
 							<h:panelGrid frame="box" style="width:100%"
 								rendered="#{not empty appBean.submenu[menuitemstatus.index+1]}">
 								<a style="font: menu"
-									href="#{appBean.submenu[menuitemstatus.index+1].menuUrl}"
+									href="http://#{header.host}/#{appBean.submenu[menuitemstatus.index].menuUrl}"
 									target="_blank">
 								#{appBean.submenu[menuitemstatus.index+1].displayName} </a>
 								<h:outputText style="font:small-caption"
@@ -49,7 +49,7 @@
 							<h:panelGrid frame="box" style="width:100%"
 								rendered="#{not empty appBean.submenu[menuitemstatus.index+2]}">
 								<a style="font: menu"
-									href="#{appBean.submenu[menuitemstatus.index+2].menuUrl}"
+									href="http://#{header.host}/#{appBean.submenu[menuitemstatus.index].menuUrl}"
 									target="_blank">
 								#{appBean.submenu[menuitemstatus.index+2].displayName} </a>
 								<h:outputText style="font:small-caption"
@@ -59,7 +59,7 @@
 							<h:panelGrid frame="box" style="width:100%"
 								rendered="#{not empty appBean.submenu[menuitemstatus.index+3]}">
 								<a style="font: menu"
-									href="#{appBean.submenu[menuitemstatus.index+3].menuUrl}"
+									href="http://#{header.host}/#{appBean.submenu[menuitemstatus.index].menuUrl}"
 									target="_blank">
 								#{appBean.submenu[menuitemstatus.index+3].displayName} </a>
 								<h:outputText style="font:small-caption"

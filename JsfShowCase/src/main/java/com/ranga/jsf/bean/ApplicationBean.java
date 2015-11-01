@@ -28,8 +28,10 @@ public class ApplicationBean {
 			String[] menuArray = bundle.getString("submenu").split(";");
 			for (String submenustring : menuArray) {
 				String[] submenuarray = submenustring.split(",");
-				submenu.add(new SubMenuData(submenuarray[0], submenuarray[1],
-						submenuarray[2]));
+				if (submenuarray.length == 3) {
+					submenu.add(new SubMenuData(submenuarray[0],
+							submenuarray[1], submenuarray[2]));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
