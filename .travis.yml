@@ -1,3 +1,11 @@
 language: java
 jdk:
 - openjdk7
+deploy:
+  provider: openshift
+  deployment_branch: openshift
+  user: ranga.bhupal@gmail.com
+  password: OPENSHIFTPASSWORD
+  domain: rangabhupal
+  app: jsftagguide
+  
