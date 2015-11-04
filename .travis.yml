@@ -1,6 +1,7 @@
 language: java
 jdk:
 - openjdk7
+script: mvn package -Popenshift
 deploy:
   provider: openshift
   deployment_branch: openshift
