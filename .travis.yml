@@ -1,13 +1,13 @@
 language: java
 jdk:
 - openjdk7
-before_deploy:
-  rhc setup
+
 deploy:
   provider: openshift
   user: ranga.bhupal@gmail.com
   password: OPENSHIFTPASSWORD
   domain: rangabhupal
-  app: jsftagguide
+  app: 
+    openshift: jsftagguide
   on: openshift
   
