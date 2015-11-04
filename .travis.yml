@@ -1,12 +1,11 @@
 language: java
 jdk:
 - openjdk7
-script: mvn package -Popenshift
 deploy:
   provider: openshift
-  deployment_branch: openshift
   user: ranga.bhupal@gmail.com
   password: OPENSHIFTPASSWORD
   domain: rangabhupal
   app: jsftagguide
+  on: openshift
   
