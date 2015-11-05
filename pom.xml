@@ -26,5 +26,6 @@
 	<module>JSFActionEvent</module>
 	<module>JsfPhaseEvent</module>
 	<module>JsfSystemEvent</module>
+	<module>JsfAjax</module>
   </modules>
 </project>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JSF Ajax Practice!</title>
+	<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
+</h:head>
+<h:body>
+	<h1>JSF Ajax</h1>
+	<h:panelGrid frame="box">
+		<h3>Ajax</h3>
+		<code><pre>
+<u>Java Code</u>
+@ManagedBean(name = "helloBean", eager = true)
+public class HelloBean {
+	String message;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}
+
+<u>HTML code</u>
+&lt;h:inputText id="input" value="\#{helloBean.message}"&gt;
+	&lt;f:validateLength minimum="3" /&gt;
+	&lt;f:ajax event="keyup" render="inputerror echo" /&gt;
+&lt;/h:inputText&gt;&lt;h:message id="inputerror" for="input"/&gt;
+&lt;br /&gt;
+
+Entered Value: &lt;h:outputText id="echo" value="\#{helloBean.message}" /&gt;
+
+<u>default</u>
+f:ajax execute default is @this
+</pre></code>
+	</h:panelGrid>
+	<h:form>
+	After entering minimum of 3 characters, entered value would be appeared.<br />
+		<h:inputText id="input" value="#{helloBean.message}" label="Message">
+			<f:validateLength minimum="3" />
+			<f:ajax event="keyup" render="inputerror echo" />
+		</h:inputText><h:message id="inputerror" for="input" style="color:red"/>
+		<br />
+		
+		Entered Value: <h:outputText id="echo" value="#{helloBean.message}" />
+	</h:form>
+
+</h:body>
+</html>
