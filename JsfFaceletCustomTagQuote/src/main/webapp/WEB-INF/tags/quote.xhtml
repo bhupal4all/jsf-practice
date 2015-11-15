@@ -7,6 +7,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:ranga="http://java.sun.com/jsf/composite/ranga">
 <ui:composition>
+<style type="">
+.quotation{
+	width: 400px;
+	background-color: #b0c4de;
+	color: black;
+	font-style: oblique;
+	font-size: larger;
+}
+
+.source{
+	font-variant:small-caps;
+	font-style: italic;
+	font-size: medium;
+	text-align: right;
+}
+</style>
+
 	<div class="quotation"><ui:insert />
 	<div class="source">- #{source}</div>
 	</div>

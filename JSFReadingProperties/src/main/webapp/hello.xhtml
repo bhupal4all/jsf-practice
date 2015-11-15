@@ -8,16 +8,69 @@
 	<title>Reading Messages</title>
 </h:head>
 <h:body>
-	<f:view locale="de" />
-	<f:loadBundle basename="local.messages" var="lmsg">
-	</f:loadBundle>
-
 	<h1><h:outputText value="${gmsg.header}" /></h1>
 	<p><h:outputFormat value="${gmsg.welcomemsg}">
 		<f:param value="${helloBean.message}" />
 	</h:outputFormat></p>
+
+	<f:view locale="de" />
+	<f:loadBundle basename="local.messages" var="lmsg" />
+	<h:outputFormat value="${lmsg.message}" />
+
 	<br />
-	<h:outputFormat value="${lmsg.message}">
-	</h:outputFormat>
+	<br />
+	<h:panelGrid frame="box">
+		<style>
+code>pre {
+	background-color: WhiteSmoke;
+	padding: 20px 20px;
+	border: 1px dashed blue;
+}
+</style>
+		<h3>Reading Global/Local properties</h3>
+<code><pre>
+<u>src/main/resources/global/messages.properties</u>
+header=(Global) Reading Properties From Global Message Bundle
+welcomemsg=(Global) Welcome {0}
+</pre></code>		
+<code><pre>
+<u>src/main/resources/local/messages_de.properties</u>
+message=Locale DE: JSF Reading Properties Practice (local)
+</pre></code>		
+<code><pre>
+<u>src/main/webapp/WEB-INF/faces-config.xml</u>
+&lt;faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+	http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd" version="2.2"&gt;
+
+	&lt;!-- Settings for application --&gt;
+	&lt;application&gt;
+		&lt;locale-config&gt;
+			&lt;default-locale&gt;en&lt;/default-locale&gt;
+			&lt;supported-locale&gt;de&lt;/supported-locale&gt;
+		&lt;/locale-config&gt;
+
+		&lt;resource-bundle&gt;
+			&lt;base-name&gt;global.messages&lt;/base-name&gt;
+			&lt;var&gt;gmsg&lt;/var&gt;
+		&lt;/resource-bundle&gt;
+	&lt;/application&gt;
+&lt;/faces-config&gt;
+</pre></code>
+<code><pre>
+<u>Html Page</u>
+&lt;h:body&gt;
+	&lt;h1&gt;&lt;h:outputText value="\${gmsg.header}" /&gt;&lt;/h1&gt;
+	&lt;p&gt;&lt;h:outputFormat value="\${gmsg.welcomemsg}"&gt;
+		&lt;f:param value="\${helloBean.message}" /&gt;
+	&lt;/h:outputFormat&gt;&lt;/p&gt;
+
+	&lt;f:view locale="de" /&gt;
+	&lt;f:loadBundle basename="local.messages" var="lmsg" /&gt;
+	&lt;h:outputFormat value="\${lmsg.message}" /&gt;
+&lt;/h:body&gt;
+</pre></code>
+	</h:panelGrid>
 </h:body>
 </html>

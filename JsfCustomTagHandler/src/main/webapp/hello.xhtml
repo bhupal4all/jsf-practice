@@ -26,5 +26,104 @@
 	<h:outputLabel value="Underline Message" />
 	<ranga:message underline="true" value="This is Italic Message" />
 </h:panelGrid>
+<br /><br />
+<h:panelGrid frame="box">
+	<style>
+	code>pre {
+		background-color: WhiteSmoke;
+		padding:20px 20px;
+		border:1px dashed blue;
+	}
+	</style>
+	<h3>Tag Handler</h3>
+<code><pre>
+<u>HTML</u>
+Import: xmlns:ranga="http://jsf.ranga.com/customtags"
+
+&lt;h:outputLabel value="Message" /&gt;
+&lt;ranga:message value="This is Testing Message" /&gt;
+
+&lt;h:outputLabel value="Bold Message" /&gt;
+&lt;ranga:message bold="true" value="This is Bold Message" /&gt;
+
+&lt;h:outputLabel value="Italic Message" /&gt;
+&lt;ranga:message italic="true" value="This is Italic Message" /&gt;
+
+&lt;h:outputLabel value="Underline Message" /&gt;
+&lt;ranga:message underline="true" value="This is Italic Message" /&gt;
+</pre></code>
+<code><pre>
+<u>src/main/webapp/WEB-INF/custom.taglib.xml</u>
+&lt;facelet-taglib version="2.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"&gt;
+	&lt;namespace&gt;http://jsf.ranga.com/customtags&lt;/namespace&gt;
+	&lt;tag&gt;
+		&lt;tag-name&gt;message&lt;/tag-name&gt;
+		&lt;handler-class&gt;com.ranga.jsf.tag.MessageTagHanlder&lt;/handler-class&gt;
+		&lt;attribute&gt;
+			&lt;name&gt;bold&lt;/name&gt;
+			&lt;required&gt;false&lt;/required&gt;
+		&lt;/attribute&gt;
+		&lt;attribute&gt;
+			&lt;name&gt;italic&lt;/name&gt;
+			&lt;required&gt;false&lt;/required&gt;
+		&lt;/attribute&gt;
+		&lt;attribute&gt;
+			&lt;name&gt;underline&lt;/name&gt;
+		&lt;/attribute&gt;
+	&lt;/tag&gt;
+&lt;/facelet-taglib&gt;
+</pre></code>
+<code><pre>
+<u>src/main/webapp/WEB-INF/web.xml</u>
+&lt;web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0"&gt;
+	&lt;!-- Tag Lib --&gt;
+	&lt;context-param&gt;
+		&lt;param-name&gt;javax.faces.FACELETS_LIBRARIES&lt;/param-name&gt;
+		&lt;param-value&gt;/WEB-INF/custom.taglib.xml&lt;/param-value&gt;
+	&lt;/context-param&gt;
+&lt;/web-app&gt;
+</pre></code>
+<code><pre>
+<u>Java Code</u>
+public class MessageTagHanlder extends javax.faces.view.facelets.TagHandler {
+	@Override
+	public void apply(FaceletContext ctx, UIComponent parent)
+			throws IOException {
+		TagAttribute bold = getAttribute("bold");
+		TagAttribute italic = getAttribute("italic");
+		TagAttribute underline = getAttribute("underline");
+		TagAttribute value = getAttribute("value");
+
+		Boolean isBold = false, isItalic = false, isUnderline = false;
+		if (bold != null)
+			isBold = new Boolean(bold.getValue());
+		if (italic != null)
+			isItalic = new Boolean(italic.getValue());
+		if (underline != null)
+			isUnderline = new Boolean(underline.getValue());
+
+		StringBuilder outputBuilder = new StringBuilder();
+		if (ComponentHandler.isNew(parent)) {
+			// Add b/u/i starting tags
+			if (value != null)
+				outputBuilder.append(value.getValue());
+			else
+				outputBuilder.append("default message: Hello World");
+			// Add b/u/i end tags
+
+			UIOutput output = new UIOutput();
+			output.setValue(outputBuilder.toString());
+			parent.getChildren().add(output);
+		}
+
+		nextHandler.apply(ctx, parent);
+	}
+}
+</pre></code>
+</h:panelGrid>
 </body>
 </html>
