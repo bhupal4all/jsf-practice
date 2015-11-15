@@ -40,5 +40,49 @@
 	</h:panelGrid>
 
 	<ui:debug hotkey="E" />
+	
+	<br /><br />
+	<h:panelGrid frame="box">
+	<style>
+	code>pre {
+		background-color: WhiteSmoke;
+		padding:20px 20px;
+		border:1px dashed blue;
+	}
+	</style>
+	<h3>Redirect And Flash </h3>
+<code><pre><u>Redirect in Tag</u>
+&lt;h:commandButton action="page2?faces-redirect=true" value="Redirect to Page2" /&gt;
+
+<u>Navigation</u>
+&lt;navigation-rule&gt;
+	&lt;navigation-case&gt;
+		&lt;from-outcome&gt;page2&lt;/from-outcome&gt;
+		&lt;to-view-id&gt;page2.xhtml&lt;/to-view-id&gt;
+		&lt;redirect /&gt;
+	&lt;/navigation-case&gt;
+&lt;/navigation-rule&gt;		
+</pre></code>
+
+	<code><pre>
+<u>Java</u>
+Flash flashContext = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+flashContext.put("flashMessage", getFlashMessage());
+flashContext.put("keepFlashMessage", getKeepFlashMessage());
+
+<u>HTML Code</u>
+Accessing Flash
+&lt;h:outputText value="Flash Message" /&gt;
+&lt;h:outputText value="\#{flash.flashMessage}" /&gt;
+
+&lt;h:outputText value="Keep Flash Message" /&gt;
+&lt;h:outputText value="\#{flash.keep.keepFlashMessage}" /&gt;
+</pre></code>
+<code><pre>
+<u>Debug View To See all variables/Component Tree</u>
+&lt;ui:debug hotkey="E" /&gt;
+To Access page CTRL-SHIFT-E
+</pre></code>
+</h:panelGrid>
 </h:body>
 </html>

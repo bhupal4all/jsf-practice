@@ -8,11 +8,28 @@
 	xmlns:ranga="http://jsf.ranga.com/customtags">
 <head>
 <title>customize tags</title>
-<style type="">
-
+</head>
+<body>
+<ranga:quote source="Swamy Vivekananda">Who is Helping You, Don't Forget them. Who is Loving you, Don't Hate them. Who is Believing you, Don't Cheat them.</ranga:quote>
+<br />
+<br />
+<br />
+<style>
+code>pre {
+	background-color: WhiteSmoke;
+    padding:20px 20px;
+    border:1px dashed blue;
+}
+</style>
+<h:panelGrid frame="box">
+	<h3>ManagedBean and Property getter</h3>
+	<code><pre>
+<u>webapp/WEB-INF/quote.xhtml</u>
+&lt;ui:composition&gt;
+&lt;style type=""&gt;
 .quotation{
 	width: 400px;
-	background-color: #b0c4de;
+	background-color: \#b0c4de;
 	color: black;
 	font-style: oblique;
 	font-size: larger;
@@ -24,10 +41,34 @@
 	font-size: medium;
 	text-align: right;
 }
+&lt;/style&gt;
 
-</style>
-</head>
-<body>
-<ranga:quote source="Swamy Vivekananda">Who is Helping You, Don't Forget them. Who is Loving you, Don't Hate them. Who is Believing you, Don't Cheat them.</ranga:quote>
+	&lt;div class="quotation"&gt;&lt;ui:insert /&gt;
+	&lt;div class="source"&gt;- \#{source}&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/ui:composition&gt;
+</pre></code>
+<code><pre>
+<u>webapp/WEB-INF/quote.taglib.xml</u>
+&lt;facelet-taglib version="2.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"&gt;
+
+	&lt;namespace&gt;http://jsf.ranga.com/customtags&lt;/namespace&gt;
+	&lt;tag&gt;
+		&lt;tag-name&gt;quote&lt;/tag-name&gt;
+		&lt;source&gt;quote.xhtml&lt;/source&gt;
+		&lt;attribute&gt;
+			&lt;name&gt;source&lt;/name&gt;
+		&lt;/attribute&gt;
+	&lt;/tag&gt;
+&lt;/facelet-taglib&gt;
+</pre></code>
+<code><pre><u>hello.xhtml</u>
+Import:	xmlns:ranga="http://jsf.ranga.com/customtags"
+
+&lt;ranga:quote source="Swamy Vivekananda"&gt;Who is Helping You, Don't Forget them. Who is Loving you, Don't Hate them. Who is Believing you, Don't Cheat them.&lt;/ranga:quote&gt;
+</pre></code>
+</h:panelGrid>
 </body>
 </html>

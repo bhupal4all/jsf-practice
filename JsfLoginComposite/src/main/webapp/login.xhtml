@@ -8,6 +8,11 @@
 	xmlns:ranga="http://java.sun.com/jsf/composite/ranga">
 <head>
 <title>Login Page</title>
+<style>
+code>pre {
+	background-color: WhiteSmoke;
+}
+</style>
 </head>
 <h:body>
 
@@ -20,6 +25,86 @@
 		<f:validateLength minimum="3" for="password" />
 		<b>This Test is been passed as Children</b>
 	</ranga:loginComponent>
+
+	<br />
+	<br />
+	<br />
+	<h:panelGrid frame="box">
+		<h3>Login Composite Code</h3>
+		<code><pre>
+<u>webapp/resources/ranga/loginComponent.xhtml</u>
+&lt;composite:interface&gt;
+	&lt;!-- Title --&gt;
+	&lt;composite:attribute name="title" default="Login" displayName="Login" /&gt;
+
+	&lt;!-- Login Component --&gt;
+	&lt;composite:attribute name="usernameLabel" default="d-Username"
+		displayName="Username" /&gt;
+	&lt;composite:attribute name="usernameValue" /&gt;
+	&lt;composite:attribute name="passwordLabel" default="d-Password"
+		displayName="Password" /&gt;
+	&lt;composite:attribute name="passwordValue" /&gt;
+	&lt;composite:attribute name="loginLabel" default="d-Submit"
+		displayName="Submit" /&gt;
+
+	&lt;!-- Error Message --&gt;
+	&lt;composite:attribute name="showMessgeDetails" default="false"
+		type="java.lang.Boolean" displayName="Show Details" /&gt;
+
+	&lt;!-- Validations --&gt;
+	&lt;composite:editableValueHolder name="username"
+		targets="loginForm:username" /&gt;
+	&lt;composite:editableValueHolder name="password"
+		targets="loginForm:password" /&gt;
+	&lt;composite:editableValueHolder name="inputs"
+		targets="loginForm:username loginForm:password" /&gt;
+
+	&lt;!-- Actions --&gt;
+	&lt;composite:attribute name="loginAction" required="true"
+		method-signature="java.lang.String action()" /&gt;
+&lt;/composite:interface&gt;
+
+&lt;composite:implementation&gt;
+	&lt;h2&gt;Login Component&lt;/h2&gt;
+	&lt;h:messages showDetail="\#{cc.attrs.showMessgeDetails}"
+		style="color:red" /&gt;
+	&lt;div align="left" style="width: 300px;"&gt;&lt;h:form id="loginForm"&gt;
+		&lt;center&gt;
+			&lt;h3&gt;&lt;h:outputText value="\#{cc.attrs.title}" /&gt;&lt;/h3&gt;
+		&lt;/center&gt;
+		&lt;h:panelGrid&gt;
+			&lt;h:panelGrid columns="2"&gt;
+				&lt;h:outputLabel value="\#{cc.attrs.usernameLabel}" /&gt;
+				&lt;h:inputText id="username" value="\#{cc.attrs.usernameValue}"
+					label="\#{cc.attrs.usernameLabel}" /&gt;
+				&lt;h:outputLabel value="\#{cc.attrs.passwordLabel}" /&gt;
+				&lt;h:inputSecret id="password" value="\#{cc.attrs.passwordValue}"
+					label="\#{cc.attrs.passwordLabel}"&gt;
+				&lt;/h:inputSecret&gt;
+			&lt;/h:panelGrid&gt;
+			&lt;h:commandButton action="\#{cc.attrs.loginAction}"
+				value="\#{cc.attrs.loginLabel}" /&gt;
+		&lt;/h:panelGrid&gt;
+		&lt;i&gt;&lt;u&gt;Note:&lt;/u&gt; d-* are default from custom tags.&lt;/i&gt;
+	&lt;/h:form&gt;&lt;/div&gt;
+	&lt;composite:insertChildren /&gt;
+&lt;/composite:implementation&gt;
+
+<u>webapp/WEB-INF/login.xhtml</u>
+import: xmlns:ranga="http://java.sun.com/jsf/composite/ranga"
+&lt;ranga:loginComponent title="Title Overridden"
+	showMessgeDetails="false" loginAction="\#{loginBean.loginAction}"
+	usernameLabel="Username" usernameValue="\#{loginBean.username}"
+	passwordLabel="Password" passwordValue="\#{loginBean.password}"&gt;
+	&lt;f:validateRequired for="inputs" /&gt;
+	&lt;f:validateLength minimum="3" for="username" /&gt;
+	&lt;f:validateLength minimum="3" for="password" /&gt;
+	&lt;b&gt;This Test is been passed as Children&lt;/b&gt;
+&lt;/ranga:loginComponent&gt;
+
+</pre></code>
+	</h:panelGrid>
+
 
 </h:body>
 </html>
