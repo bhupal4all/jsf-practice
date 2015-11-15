@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ranga="http://jsf.ranga.com/customtags"
+	xmlns:rangabw="http://jsf.ranga.com/customtags.bw">
+<h:head>
+	<title>Custom Tag Int 2 String</title>
+</h:head>
+<h:body>
+	<h1>Source Code</h1>
+	<h:panelGrid frame="box">
+		<style>
+code>pre {
+	background-color: WhiteSmoke;
+	padding: 20px 20px;
+	border: 1px dashed blue;
+}
+</style>
+		<h3>JSF UI Component Base</h3>
+
+		<ol id="top">
+			<li><a href="#jsfcomponent">JSF Component</a></li>
+			<li><a href="#webxml">web.xml</a></li>
+			<li><a href="#colortaglib">custom.taglib.xml</a></li>
+			<li><a href="#colorrenderer">Color Renderer</a></li>
+			<li><a href="#bwtaglib">custom.bw.taglib.xml</a></li>
+			<li><a href="#bwrenderer">Black and White Renderer</a></li>
+			<li><a href="#html">HTML Code</a></li>
+		</ol>
+
+		<code><pre>
+<u id="jsfcomponent">JSF Component</u>
+@FacesComponent("com.ranga.jsf.component.Int2StringComponent")
+public class Int2StringComponent extends UIComponentBase {
+	static Hashtable&lt;Integer, String&gt; dictionary = new Hashtable&lt;Integer, String&gt;();
+	public static final String COMPONENT_FAMILY = "RangaCustomOutputTags";
+
+	private boolean anyError = false;
+	private String result = "";
+
+	public boolean isAnyError() {
+		return anyError;
+	}
+
+	static {
+		dictionary.put(1, "One");
+		...
+	}
+
+	public Int2StringComponent() {
+		System.out.println("Int2StringComponent ctor");
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
+	@Override
+	public void encodeBegin(FacesContext context) throws IOException {
+		Boolean valid = false;
+		String intStr = (String) getAttributes().get("value");
+		if (intStr != null) {
+			Integer intValue = new Integer(intStr);
+			if (intValue != null) {
+				valid = true;
+				if (intValue &lt; 10) {
+					setResult(dictionary.get(intValue));
+				} else {
+					setResult("Integer Value is &gt; 9 ");
+					anyError = true;
+				}
+			}
+		}
+		if (!valid) {
+			setResult("Invalid Integer");
+			anyError = true;
+		}
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getResult() {
+		return result;
+	}
+}
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="webxml">src/main/webapp/WEB-INF/web.xml</u>
+&lt;web-app xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0"&gt;
+    
+	&lt;!-- Tag Lib --&gt;
+	&lt;context-param&gt;
+		&lt;param-name&gt;javax.faces.FACELETS_LIBRARIES&lt;/param-name&gt;
+		&lt;param-value&gt;/WEB-INF/custom.taglib.xml; /WEB-INF/custom.bw.taglib.xml&lt;/param-value&gt;
+	&lt;/context-param&gt;
+&lt;/web-app&gt;
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="colortaglib">src/main/webapp/WEB-INF/custom-taglib.xml</u>
+&lt;?xml version="1.0"?&gt;
+&lt;facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"&gt;
+	&lt;namespace&gt;http://jsf.ranga.com/customtags&lt;/namespace&gt;
+	&lt;tag&gt;
+		&lt;description&gt;Integer to String Conversion&lt;/description&gt;
+		&lt;tag-name&gt;int2string&lt;/tag-name&gt;
+		&lt;component&gt;
+			&lt;component-type&gt;com.ranga.jsf.component.Int2StringComponent&lt;/component-type&gt;
+			&lt;renderer-type&gt;com.ranga.jsf.renderer.Int2StringRenderer&lt;/renderer-type&gt;
+			&lt;handler-class/&gt;
+		&lt;/component&gt;
+		&lt;attribute&gt;
+			&lt;description&gt;Integer Value&lt;/description&gt;
+			&lt;name&gt;value&lt;/name&gt;
+			&lt;required&gt;true&lt;/required&gt;
+			&lt;type&gt;java.lang.Integer&lt;/type&gt;
+		&lt;/attribute&gt;
+	&lt;/tag&gt;
+&lt;/facelet-taglib&gt;
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="colorrenderer">Color Renderer</u>
+@FacesRenderer(componentFamily = Int2StringComponent.COMPONENT_FAMILY, 
+			rendererType = "com.ranga.jsf.renderer.Int2StringRenderer")
+public class Int2StringRenderer extends Renderer {
+	public static final String RENDERER_TYPE = "com.ranga.jsf.renderer.Int2StringRenderer";
+
+	public Int2StringRenderer() {
+		super();
+	}
+
+	@Override
+	public void encodeBegin(FacesContext context, UIComponent component)
+			throws IOException {
+		super.encodeBegin(context, component);
+	}
+
+	@Override
+	public void encodeChildren(FacesContext context, UIComponent component)
+			throws IOException {
+		super.encodeChildren(context, component);
+	}
+
+	@Override
+	public void encodeEnd(FacesContext context, UIComponent component)
+			throws IOException {
+		System.out.println("encodeEnd");
+		ResponseWriter writer = context.getResponseWriter();
+
+		if (component instanceof Int2StringComponent) {
+			Int2StringComponent custComponent = (Int2StringComponent) component;
+
+			if (custComponent.isAnyError()) {
+				writer.startElement("font", custComponent);
+				writer.writeAttribute("color", "red", "color");
+				writer.write(custComponent.getResult());
+				writer.endElement("font");
+			} else {
+				writer.startElement("b", custComponent);
+				writer.write(custComponent.getResult());
+				writer.endElement("b");
+			}
+		}
+	}
+}
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="bwtaglib">src/main/webapp/WEB-INF/custom.bw-taglib.xml</u>
+&lt;?xml version="1.0"?&gt;
+&lt;facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"&gt;
+	&lt;description&gt;This Tag Library for Black And White&lt;/description&gt;
+	&lt;namespace&gt;http://jsf.ranga.com/customtags.bw&lt;/namespace&gt;
+	&lt;tag&gt;
+		&lt;description&gt;Integer to String Conversion&lt;/description&gt;
+		&lt;tag-name&gt;int2string&lt;/tag-name&gt;
+		&lt;component&gt;
+			&lt;component-type&gt;com.ranga.jsf.component.Int2StringComponent&lt;/component-type&gt;
+			&lt;renderer-type&gt;com.ranga.jsf.renderer.Int2StringBWRenderer&lt;/renderer-type&gt;
+			&lt;handler-class/&gt;
+		&lt;/component&gt;
+		&lt;attribute&gt;
+			&lt;description&gt;Integer Value&lt;/description&gt;
+			&lt;name&gt;value&lt;/name&gt;
+			&lt;required&gt;true&lt;/required&gt;
+			&lt;type&gt;java.lang.Integer&lt;/type&gt;
+		&lt;/attribute&gt;
+	&lt;/tag&gt;
+&lt;/facelet-taglib&gt;
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="bwrenderer">Black and White Renderer</u>
+@FacesRenderer(componentFamily = Int2StringComponent.COMPONENT_FAMILY, 
+			rendererType = "com.ranga.jsf.renderer.Int2StringBWRenderer")
+public class Int2StringBWRenderer extends Renderer {
+	public static final String RENDERER_TYPE = "com.ranga.jsf.renderer.Int2StringBWRenderer";
+
+	public Int2StringBWRenderer() {
+		super();
+	}
+
+	@Override
+	public void encodeEnd(FacesContext context, UIComponent component)
+			throws IOException {
+		ResponseWriter writer = context.getResponseWriter();
+
+		if (component instanceof Int2StringComponent) {
+			Int2StringComponent custComponent = (Int2StringComponent) component;
+
+			if (custComponent.isAnyError()) {
+				writer.write("*");
+			}
+
+			writer.write(custComponent.getResult());
+		}
+	}
+}
+</pre></code>
+<a href="#top">Top</a>
+<code><pre>
+<u id="html">HTML Code</u>
+<b>Imports</b>
+xmlns:ranga="http://jsf.ranga.com/customtags"
+xmlns:rangabw="http://jsf.ranga.com/customtags.bw"
+
+&lt;h:panelGrid frame="box" columns="2"&gt;
+	&lt;h:outputLabel value="Invalid Entry" /&gt;
+	&lt;ranga:int2string /&gt;
+	&lt;h:outputLabel value="Integer 1" /&gt;
+	&lt;ranga:int2string value="1" /&gt;
+	&lt;h:outputLabel value="Interger 10" /&gt;
+	&lt;ranga:int2string value="10" /&gt;
+&lt;/h:panelGrid&gt;
+
+&lt;h:panelGrid frame="box" columns="2"&gt;
+	&lt;h:outputLabel value="Invalid Entry" /&gt;
+	&lt;rangabw:int2string /&gt;
+	&lt;h:outputLabel value="Integer 1" /&gt;
+	&lt;rangabw:int2string value="1" /&gt;
+	&lt;h:outputLabel value="Interger 10" /&gt;
+	&lt;rangabw:int2string value="10" /&gt;
+&lt;/h:panelGrid&gt;
+</pre></code>
+<a href="#top">Top</a>
+	</h:panelGrid>
+</h:body>
+</html>
